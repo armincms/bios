@@ -47,7 +47,7 @@ If you have correctly registered the Bios tool, you will see a new Nav item cont
     For authorizing each config option you can define a policy for the `Armincms\Bios\Option`  model or create your model and change the resource `public static $model` property  and make a policy for it.
 
 **Attention 4:**
-    It's possible to access your stored data by the `static method `option` of the resource.
+    It's possible to access your stored data by the static method `option` of the resource.
     so if you created the resource 'General'; you can get all data by the `General::options()` method. 
     In the same way; you can retrieve the specific data by the `General::option(key, default)` method.
 
