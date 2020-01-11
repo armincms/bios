@@ -3,7 +3,9 @@
     "description": "A Laravel Nova tool.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "armincms",
+        "option"
     ],
     "license": "MIT",
     "require": {
