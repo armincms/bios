@@ -10,7 +10,7 @@ The Nova tool for configurations storage
 
 
 ## Introduction
-Bios is a well-designed UI for `armincms/option` package.
+Bios is a well-designed UI based on the `armincms/option` package for store the configurations data.
 
 ## Installation
 
