@@ -16,8 +16,7 @@ Bios is a well-designed UI based on the `armincms/option` package for store the 
 
 To get started with Bios run the below command:
 
-```
-    composer require armincms/bios
+```    composer require armincms/bios
 ```
 
 After configuring the *`armincms/option`* package; you need to register the Bios tool. 
@@ -28,9 +27,7 @@ for doing this refer [here](https://nova.laravel.com/docs/2.0/customization/tool
 The Bios tool; will detect the configurable options by the resources fields. 
 Bios resources are like Nova sources, but easier. to create new settings, you need to create a Bios resource. for doing this run the below command:
 
-```
-php artisan bios resource
-
+```    php artisan bios resource
 ```
 
 this command makes a new resource in the `app/Nova` directory. this resource never displayed in the Nova resource nav but will display in the Bios resources.
