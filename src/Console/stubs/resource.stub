@@ -1,0 +1,33 @@
+<?php
+
+namespace DummyNamespace;
+
+use Armincms\Bios\Resource;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
+
+class DummyClass extends Resource
+{ 
+    /**
+     * The option storage driver name.
+     *
+     * @var string
+     */
+    public static $store = 'DummyStore';
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function fields(Request $request)
+    {
+        return [
+            Text::make("Option Key")->withMeta([
+                'value' => 'default-value'
+            ]),
+        ];
+    }
+}
