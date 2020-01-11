@@ -1,5 +1,5 @@
 # Bios
-The nova tool for configurations storage
+The Nova tool for configurations storage
 
 ##### Table of Contents   
 
@@ -10,46 +10,50 @@ The nova tool for configurations storage
 
 
 ## Introduction
-Bios is a well designed UI for `armincms/option` package.
+Bios is a well-designed UI for `armincms/option` package.
 
 ## Installation
 
-To get started with Bios run below command:
+To get started with Bios run the below command:
 
 ```
     composer require armincms/bios
 ```
 
-After configure `armincms/option`; you need to register Bios tool. for this reffer here(tool configuration)
+After configuring the *`armincms/option`* package; you need to register the Bios tool. 
+for doing this refer [here](https://nova.laravel.com/docs/2.0/customization/tools.html#registering-tools)
 
 ## Resources
-Bios resources is like the Nova resources; but simplest. for create new configurations; need create new bios resource. for this run below command:
+
+The Bios tool; will detect the configurable options by the resources fields. 
+Bios resources are like Nova sources, but easier. to create new settings, you need to create a Bios resource. for doing this run the below command:
+
 ```
 php artisan bios resource
 
 ```
 
-this command make new resource in `app/Nova` directory. this resource never show 
-the Nova in resource nav; but will display in bios Nav.
+this command makes a new resource in the `app/Nova` directory. this resource never displayed in the Nova resource nav but will display in the Bios resources.
 
-if you registered bios tool correct; you will new nav contained your new resource.
+If you have correctly registered the Bios tool, you will see a new Nav item containing your new resources.
 
 **Attention 1 :** 
-    The default option store is the default of `armincms/store` config file. 
+    By default, the Bios will read the storage driver from the `armincms/option` configurations.
 
 **Attention 2:** 
-    For use custom store you can override `public static $store = null` property 
-    of your resource.
+    For use custom storage you can change the `public static $store = null`  property of the resource.
 
 **Attention 3:** 
-    For authorization each config option you can make policy for `Armincms\Bios\Option` 
-    model or create your model and override resource `public static $model` property.
+    For authorizing each config option you can define a policy for the `Armincms\Bios\Option`  model or create your model and change the resource `public static $model` property  and make a policy for it.
 
 **Attention 4:**
-    It's possible to access your stored option by `static method option` of your resource.
-    So if you created resource 'General'; you can get coresponds options by call 
-    the `General::options()` or `General::option(key, default)` static methods; 
-    or use deafult `armincms/option` helper methods;
+    It's possible to access your stored data by the `static method `option` of the resource.
+    so if you created the resource 'General'; you can get all data by the `General::options()` method. 
+    In the same way; you can retrieve the specific data by the `General::option(key, default)` method.
+
+**Attention 5:**
+    Methods that defined in `attention 4` are just helpers and also you can use 
+    `armincms/option` helpers method instead of it.  
 
 
  
