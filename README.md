@@ -29,7 +29,7 @@ The Bios tool; will detect the configurable options by the resources fields.
 Bios resources are like Nova sources, but easier. to create new settings, you need to create a Bios resource. for doing this run the below command:
 
 ```    
-    php artisan bios resource
+    php artisan bios:resource ResourceName
 ```
 
 this command makes a new resource in the `app/Nova` directory. this resource never displayed in the Nova resource nav but will display in the Bios resources.
