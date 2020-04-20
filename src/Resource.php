@@ -25,7 +25,7 @@ abstract class Resource extends NovaResource
      *
      * @var string
      */
-    public static $group = 'General';
+    public static $group = '';
 
     /**
      * The model the resource corresponds to.
@@ -46,7 +46,18 @@ abstract class Resource extends NovaResource
      *
      * @var bool
      */
-    public static $displayInNavigation = false; 
+    public static $displayInNavigation = false;  
+
+    /**
+     * Determine if this resource is available for bios navigation.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    public static function availableForBios(Request $request)
+    {
+        return static::$configurable;
+    }
 
     /**
      * Get a fresh instance of the model represented by the resource.

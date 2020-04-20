@@ -4,8 +4,7 @@ namespace DummyNamespace;
 
 use Armincms\Bios\Resource;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text; 
 
 class DummyClass extends Resource
 { 
