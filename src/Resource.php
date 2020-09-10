@@ -49,6 +49,13 @@ abstract class Resource extends NovaResource
     public static $displayInNavigation = false;  
 
     /**
+     * Indicates if the resource should be globally searchable.
+     *
+     * @var bool
+     */
+    public static $globallySearchable = false;
+
+    /**
      * Determine if this resource is available for bios navigation.
      *
      * @param  \Illuminate\Http\Request  $request
