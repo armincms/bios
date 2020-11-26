@@ -20,8 +20,8 @@ class UpdateFieldController extends Controller
         $resourceClass->authorizeToUpdate($request);
 
         return response()->json([
-            'fields' => $resourceClass->updateFieldsWithinPanels($request),
-            'panels' => $resourceClass->availablePanelsForUpdate($request),
+            'fields' => $resourceClass->updateFieldsWithinPanels($request, $request->newResource()),
+            'panels' => $resourceClass->availablePanelsForUpdate($request, $request->newResource()),
         ]);
     }
 }

@@ -20,8 +20,8 @@ class ResourceShowController extends Controller
         $resource->authorizeToView($request);
 
         return response()->json([
-            'panels'    => $resource->availablePanelsForDetail($request),
-            'resource'  => $resource->serializeForDetail($request),
+            'panels'    => $resource->availablePanelsForDetail($request, $request->newResource()),
+            'resource'  => $resource->serializeForDetail($request, $request->newResource()),
         ]);
     } 
 }
