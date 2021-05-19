@@ -17,28 +17,27 @@ class ResourceUpdateController extends Controller
     public function handle(BiosRequest $request)
     {  
         $resourceClass = $request->newResource();
-        $fields = $resourceClass::fillForUpdate($request, $resourceClass::newModel());
+        
+        list($model, $callbacks) = $resourceClass::fillForUpdate($request, $resourceClass::newModel());
 
-        $fields->each(function($value, $key) use ($request, $resourceClass) { 
-            $resource = $request->newResourceWith( $resourceClass::fillModel($key, $value) ); 
+        $resource = $request->newResourceWith($model); 
             
-            $resource->authorizeToUpdate($request);
+        $resource->authorizeToUpdate($request);
 
-            $resource::validateForUpdate($request, $resource);
-            
-            // ActionEvent::forResourceUpdate($request->user(), $model)->save(); 
-        }); 
+        $resource::validateForUpdate($request, $resource); 
 
         $stored = $resourceClass::store()->putMany(
-            $fields->toArray(), $resourceClass::storeTag()
+            $model->toArray(), $resourceClass::storeTag()
         );
+
+        collect($callbacks)->each->__invoke();
 
         if($stored === false) {
             return response(['message' => 'Some data storage failed'], 422)->throwResponse();
         } 
 
         return response()->json([ 
-            'resource' => $fields->toArray(),
+            'resource' => $model,
             'redirect' => $resourceClass::redirectAfterUpdate($request, $resourceClass),
         ]);
     } 

@@ -71,9 +71,11 @@ abstract class Resource extends NovaResource
      *
      * @return mixed
      */
-    public static function fillModel(string $attribute, $default = null)
+    public static function fillModel(string $attribute, $value = null)
     { 
-        $value = static::store()->has($attribute) ? static::store()->get($attribute) : $default;
+        if (is_null($value)) {
+            $value = static::store()->get($attribute, $value);
+        } 
 
         return static::newModel()->forceFill([ $attribute => $value ]); 
     }
@@ -130,25 +132,6 @@ abstract class Resource extends NovaResource
     public static function options()
     {
         return static::store()->tag(static::storeTag());
-    }
-
-    /**
-     * Fill the given fields for the model.
-     *
-     * @param  \Armincms\Bios\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  \Illuminate\Support\Collection  $fields
-     * @return array
-     */
-    protected static function fillFields(NovaRequest $request, $model, $fields)
-    {
-        return $fields->mapWithKeys(function($field) use ($request, $model) { 
-            $field->fill($request, $model);
-
-            return [
-                $field->attribute => $model->{$field->attribute}
-            ];
-        });  
     }  
 
     /**
