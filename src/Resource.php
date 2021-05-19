@@ -105,7 +105,7 @@ abstract class Resource extends NovaResource
      */
     public static function option($key, $default = null)
     {
-        return static::store()->get($key, $default);
+        return data_get(static::options(), $key, $default);
     }
 
     /**
@@ -126,8 +126,8 @@ abstract class Resource extends NovaResource
      * @return array
      */
     public static function options()
-    {
-        return static::store()->tag(static::storeTag());
+    { 
+        return static::$options ?: static::$options = static::store()->tag(static::storeTag()); 
     }  
 
     /**
