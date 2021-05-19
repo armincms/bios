@@ -71,13 +71,9 @@ abstract class Resource extends NovaResource
      *
      * @return mixed
      */
-    public static function fillModel(string $attribute, $value = null)
-    { 
-        if (is_null($value)) {
-            $value = static::store()->get($attribute, $value);
-        } 
-
-        return static::newModel()->forceFill([ $attribute => $value ]); 
+    public static function newModel()
+    {
+        return parent::newModel()->forceFill(static::options());
     }
 
     /**
@@ -151,13 +147,9 @@ abstract class Resource extends NovaResource
             $fields = $filter($fields);
         }
 
-        $fields->whereInstanceOf(Resolvable::class)->each(function($field) {   
-            $field->resolve(static::fillModel($field->attribute));
+        $model = static::newModel()->forceFill(static::options());
 
-            if(static::store()->has($field->attribute)) { 
-                $field->withMeta(['value' => $field->value]);
-            }
-        }); 
+        $fields->whereInstanceOf(Resolvable::class)->each->resolve($model); 
 
         return $fields->filter->authorize($request)->values();  
     } 
@@ -177,7 +169,7 @@ abstract class Resource extends NovaResource
             return $fields->push($this->actionfield());
         })->each(function ($field) {
             if ($field instanceof Resolvable) { 
-                $field->resolveForDisplay(static::fillModel($field->attribute));
+                $field->resolveForDisplay($this->resource);
             }
         });
     }
