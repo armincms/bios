@@ -21,6 +21,13 @@ abstract class Resource extends NovaResource
     public static $configurable = true;
 
     /**
+     * Cache retrived options.
+     *
+     * @var bool
+     */
+    public static $options;
+
+    /**
      * The logical group associated with the resource.
      *
      * @var string
