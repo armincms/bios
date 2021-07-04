@@ -134,7 +134,8 @@ abstract class Resource extends NovaResource
      */
     public static function options()
     { 
-        return static::$options ?: static::$options = static::store()->tag(static::storeTag()); 
+        return static::$options[get_called_class()] ?? 
+               static::$options[get_called_class()] = static::store()->tag(static::storeTag()); 
     }  
 
     /**
